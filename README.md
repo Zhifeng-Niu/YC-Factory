@@ -1,82 +1,26 @@
 # YC-Factory 🔥
 
-> **AI Startup Factory Operating System** — Build startups with an AI agent team
-
-YC-Factory 是一个**多 Agent 协作的创业操作系统**。它把 YC 的创业方法论变成了一组可以让 AI Agent 团队执行的 protocol、task flow 和 agent 角色定义。
-
-**谁在用：** OpenClaw、Claude Code (CC)、Multi-Agent 开发团队
-
 ---
 
-## 核心问题
+## 中文版
 
-> 一个人创业太慢？一个 Agent 不够用？
+### 这是什么？
 
-YC-Factory 的答案是：**组建一支 AI Agent 战队**。
+YC-Factory 是一个**多 Agent 协作的创业操作系统**。
 
-```
-CEO Agent      → 决策方向
-Partner Agent → 评估机会
-Founder Agent → 带队执行
-Engineer      → 写代码
-Growth Agent  → 做增长
-```
+它把 YC（Y Combinator）的创业方法论——选方向、跑 MVP、验证市场、快速迭代——变成了一套可以让 AI Agent 战队执行的 protocol、task flow 和 agent 角色定义。
 
-每个 Agent 各司其职，通过标准协议通信，YC 方法论自动运转。
+**核心问题：** 一个人创业太慢？一个 Agent 不够用？
 
----
+**答案：** 组建一支 AI Agent 战队，YC 方法论自动运转。
 
-## 支持的框架 / Supported Frameworks
+### 谁在用？
 
-### OpenClaw 🤖
+- **OpenClaw** — 本地 Agent 运行环境，直接跑 YC-Factory 的所有 agents
+- **Claude Code (CC)** — agent teams 模式，多 subagent 并行调度
+- **其他多 Agent 框架** — protocol 层框架无关，任何框架都可接入
 
-OpenClaw 是你的**本地 Agent 运行环境**，YC-Factory 的所有 agents 都可以直接跑在上面。
-
-```bash
-# 在 OpenClaw workspace 里
-cd yc-factory
-node scripts/init-factory.js
-```
-
-OpenClaw 的 runtime-orchestrator 会自动编排多 Agent 协作，YC-Factory 提供 protocol 层和 agent 定义。
-
----
-
-### Claude Code (CC) 🔥
-
-Claude Code 的 **agent teams** 模式天然适合 YC-Factory。
-
-```bash
-# 在 Claude Code 里
-cd yc-factory
-node scripts/create-startup.js --batch 01 --idea "你的创业想法"
-```
-
-CC 的 subagent 协作模式让你可以同时调度多个 agent：
-- CEO agent 做决策
-- Engineer agent 写代码
-- Growth agent 做增长
-
-**参考：** `agents/index.js` 里的 `createTeam()` 函数
-
----
-
-### 其他 Multi-Agent 框架
-
-YC-Factory 的 protocol 是**框架无关的**：
-
-| Protocol 文件 | 作用 |
-|--------------|------|
-| `protocol/message-format.js` | Agent 间消息格式 |
-| `protocol/state-sync.js` | 共享状态同步 |
-| `protocol/task-flow.js` | 任务流转定义 |
-| `protocol/CEO_COMMAND.md` | CEO 命令协议 |
-
-只要实现这些接口，任何多 Agent 框架都可以接入 YC-Factory。
-
----
-
-## 架构
+### 核心架构
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -94,83 +38,158 @@ YC-Factory 的 protocol 是**框架无关的**：
 └─────────────────────────────────────────────────────────────┘
 ```
 
----
+### Agent 战队
 
-## 快速开始
+| Agent | 职责 |
+|-------|------|
+| CEO Agent | 最终决策、批量选择 |
+| Partner Agent | 方向判断、机会评估 |
+| Founder Agent | Startup CEO，带队执行 |
+| Research Agent | 市场/用户调研 |
+| Product Agent | 产品设计 |
+| Engineering Agent | 开发实现 |
+| Growth Agent | 增长黑客 |
+
+### Startup 生命周期
+
+```
+idea → approval → mvp → launch → metrics → pivot / scale / kill
+```
+
+### 快速开始
 
 ```bash
-# 初始化 Factory
+# 初始化
 cd yc-factory
 node scripts/init-factory.js
 
-# 评估一个创业想法
+# 评估创业想法
 node scripts/evaluate-idea.js "AI-powered personal finance"
 
 # 创建 Startup
 node scripts/create-startup.js --batch 01 --idea "..."
 ```
 
----
-
-## Agent 角色
-
-| Layer | Agent | 职责 |
-|-------|-------|------|
-| Strategic | CEO Agent | 最终决策、批量选择 |
-| Strategic | Partner Agent | 方向判断、机会评估 |
-| Strategic | Strategy Agent | 战略规划 |
-| Program | Founder Agent | Startup CEO |
-| Execution | Research Agent | 市场/用户调研 |
-| Execution | Product Agent | 产品设计 |
-| Execution | Engineering Agent | 开发实现 |
-| Execution | Growth Agent | 增长黑客 |
-
----
-
-## Startup 生命周期
-
-```
-idea → approval → mvp → launch → metrics → pivot / scale / kill
-```
-
-**Selection Engine 评分维度：**
-- Market Size（市场规模）
-- Growth Rate（增长率）
-- Retention（留存）
-- Revenue（收入）
-- User Feedback（用户反馈）
-
-> 低分 → shutdown | 高分 → scale
-
----
-
-## 目录结构
+### 目录结构
 
 ```
 yc-factory/
-├── README.md                    # 本文件
 ├── protocol/                    # Agent 通信协议
 │   ├── message-format.js       # 消息格式
 │   ├── state-sync.js           # 状态同步
-│   ├── task-flow.js            # 任务流转
-│   └── CEO_COMMAND.md          # CEO 命令协议
+│   └── task-flow.js            # 任务流转
 ├── agents/                      # Agent 定义
 │   ├── strategic/              # 战略层
 │   ├── program/                # 孵化层
 │   └── execution/              # 执行层
 ├── startups/                    # Startup 实例
-└── scripts/                     # 运行脚本
+└── scripts/                     # 脚本
 ```
 
----
-
-## Philosophy
+### 设计哲学
 
 YC 用 20 年证明了：
+
 > **The best way to have a good idea is to have lots of ideas and throw away the bad ones.**
 
 YC-Factory 把这个过程自动化了——让 AI Agent 战队来做这件事。
 
+**Build fast. Fail fast. Learn faster.** 🚀
+
 ---
+
+## English Version
+
+---
+
+### What is YC-Factory?
+
+YC-Factory is an **AI Multi-Agent Startup Operating System**.
+
+It takes Y Combinator's methodology — picking directions, running MVPs, validating markets, iterating fast — and turns it into a set of protocols, task flows, and agent role definitions that an AI agent team can execute.
+
+**Core question:** Solo entrepreneurship too slow? One agent not enough?
+
+**Answer:** Build an AI agent team. YC methodology runs on autopilot.
+
+### Who's using it?
+
+- **OpenClaw** — Local agent runtime, runs all YC-Factory agents natively
+- **Claude Code (CC)** — agent teams mode, parallel subagent调度
+- **Any multi-agent framework** — framework-agnostic protocol layer
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Strategic Layer                          │
+│              CEO / Partner / Strategy Agents               │
+├─────────────────────────────────────────────────────────────┤
+│                     Program Layer                           │
+│              Startup Batches & Founder Agents              │
+├─────────────────────────────────────────────────────────────┤
+│                    Execution Layer                          │
+│         Research / Product / Engineering / Growth          │
+├─────────────────────────────────────────────────────────────┤
+│                  Infrastructure Layer                       │
+│              Protocol / Memory / Orchestration              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Agent Team
+
+| Agent | Role |
+|-------|------|
+| CEO Agent | Final decisions, batch selection |
+| Partner Agent | Direction judgment, opportunity assessment |
+| Founder Agent | Startup CEO, leads execution |
+| Research Agent | Market & user research |
+| Product Agent | Product design |
+| Engineering Agent | Development |
+| Growth Agent | Growth hacking |
+
+### Startup Lifecycle
+
+```
+idea → approval → mvp → launch → metrics → pivot / scale / kill
+```
+
+### Quick Start
+
+```bash
+# Initialize
+cd yc-factory
+node scripts/init-factory.js
+
+# Evaluate an idea
+node scripts/evaluate-idea.js "AI-powered personal finance"
+
+# Create a Startup
+node scripts/create-startup.js --batch 01 --idea "..."
+```
+
+### Directory Structure
+
+```
+yc-factory/
+├── protocol/                    # Agent communication protocols
+│   ├── message-format.js       # Message format
+│   ├── state-sync.js           # State sync
+│   └── task-flow.js            # Task flow
+├── agents/                      # Agent definitions
+│   ├── strategic/              # Strategic layer
+│   ├── program/                # Program layer
+│   └── execution/              # Execution layer
+├── startups/                    # Startup instances
+└── scripts/                     # Scripts
+```
+
+### Philosophy
+
+YC spent 20 years proving:
+
+> **The best way to have a good idea is to have lots of ideas and throw away the bad ones.**
+
+YC-Factory automates this — letting an AI agent team do the work.
 
 **Build fast. Fail fast. Learn faster.** 🚀
