@@ -1,0 +1,26 @@
+{
+  "name": "yc-factory",
+  "version": "1.0.0",
+  "description": "AI Startup Factory - YC as Multi-Agent System",
+  "main": "scripts/factory.js",
+  "scripts": {
+    "start": "node scripts/cli.js",
+    "init": "node scripts/cli.js init",
+    "status": "node scripts/cli.js status",
+    "create": "node scripts/cli.js create",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yc",
+    "startup",
+    "factory",
+    "multi-agent",
+    "ai",
+    "entrepreneurship"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
