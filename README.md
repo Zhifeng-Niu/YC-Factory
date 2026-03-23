@@ -56,6 +56,18 @@ YC-Factory 是一个**多 Agent 协作的创业操作系统**。
 idea → approval → mvp → launch → metrics → pivot / scale / kill
 ```
 
+### 🚀 接入方法（1句话）
+
+**把这个仓库地址甩给你的 Agent：**
+
+```
+https://github.com/Zhifeng-Niu/YC-Factory
+```
+
+它会自动 clone 到 workspace，然后内化成 skills 开始干活。
+
+> 原理：Agent 读到 README → 理解 YC-Factory 的架构和 protocol → 化身 CEO/Founder/Engineer 角色开始执行
+
 ### 快速开始
 
 ```bash
@@ -153,6 +165,18 @@ It takes Y Combinator's methodology — picking directions, running MVPs, valida
 ```
 idea → approval → mvp → launch → metrics → pivot / scale / kill
 ```
+
+### 🚀 How to Use (One Line)
+
+**Just甩 this repo URL to your agent:**
+
+```
+https://github.com/Zhifeng-Niu/YC-Factory
+```
+
+It will clone into workspace, internalize the protocols and agent roles, and start operating as your AI startup team.
+
+> How it works: Agent reads README → understands architecture & protocols → becomes CEO/Founder/Engineer and executes
 
 ### Quick Start
 
